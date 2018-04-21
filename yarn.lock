@@ -44,12 +44,11 @@
   dependencies:
     arrify "^1.0.1"
 
-"@textactor/domain@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@textactor/domain/-/domain-0.1.0.tgz#fc33cf3a5ca105aca95d0a0eb2c1fcc447659afa"
+"@textactor/domain@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@textactor/domain/-/domain-0.1.4.tgz#6dc901d7442ed83e64866578a729cf386e288471"
   dependencies:
     atonic "^1.0.4"
-    root-name "^0.1.0"
     slugify "^1.2.9"
     standard-text "^0.1.1"
 
@@ -2392,10 +2391,6 @@ rimraf@2, rimraf@^2.5.1, rimraf@^2.6.1, rimraf@^2.6.2:
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.2.tgz#2ed8150d24a16ea8651e6d6ef0f47c4158ce7a36"
   dependencies:
     glob "^7.0.5"
-
-root-name@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/root-name/-/root-name-0.1.0.tgz#ecbcce8a65c134d7b39c18e4511f1ed7b80f8018"
 
 safe-buffer@^5.0.1, safe-buffer@^5.1.1, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.1"

@@ -41,6 +41,6 @@
     "typescript": "latest"
   },
   "dependencies": {
-    "@textactor/domain": "^0.1.0"
+    "@textactor/domain": "^0.1.4"
   }
 }
