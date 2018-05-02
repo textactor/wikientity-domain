@@ -7,6 +7,13 @@ import { WikiEntity } from '../entities';
 export class MemoryWikiEntityRepository implements IWikiEntityRepository {
     private db: Map<string, WikiEntity> = new Map()
 
+    createOrUpdate(item: WikiEntity): Promise<WikiEntity> {
+        if (this.db.has(item.id)) {
+            return this.update({ item });
+        }
+        return this.create(item);
+    }
+
     getById(id: string): Promise<WikiEntity> {
         return Promise.resolve(this.db.get(id));
     }
