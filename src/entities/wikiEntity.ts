@@ -13,7 +13,7 @@ export type WikiEntity = {
     id: string
     lang: string
     name: string
-    // names: string[]
+    aliases?: string[]
     wikiDataId: string
     wikiPageId?: number
     wikiPageTitle?: string

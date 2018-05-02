@@ -2,10 +2,12 @@
 import { WikiEntityType, WikiEntity, WikiEntityData } from './wikiEntity';
 import { filterWikiEntityData } from './filterWikiEntityData';
 import { filterEntityCategories } from './filterWikiEntityCategories';
+import { uniq } from '@textactor/domain';
 
 export type CreatingWikiEntityData = {
     lang: string
     name: string
+    aliases?: string[]
     wikiDataId: string
     wikiPageId?: number
     wikiPageTitle?: string
@@ -29,7 +31,7 @@ export class WikiEntityHelper {
         const entity: WikiEntity = {
             id: `${lang.toUpperCase()}${wikiEntityData.wikiDataId}`,
             name: wikiEntityData.name.trim(),
-            // names: uniq(wikiEntityData.names || []),
+            aliases: uniq(wikiEntityData.aliases || []).filter(item => item.length > 1 && item.length <= 200).slice(0, 10),
             lang: lang,
             description: wikiEntityData.description,
             about: wikiEntityData.about,
