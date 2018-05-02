@@ -23,7 +23,6 @@ export type WikiEntity = {
     types?: string[]
     data?: WikiEntityData
     categories?: string[]
-    rank?: number
 
     createdAt?: number
     updatedAt?: number

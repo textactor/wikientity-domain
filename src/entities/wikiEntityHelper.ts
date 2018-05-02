@@ -47,6 +47,28 @@ export class WikiEntityHelper {
             entity.type = wikiEntityData.type;
         }
 
+        if (entity.types && !entity.types.length) {
+            delete entity.types;
+        }
+        if (entity.categories && !entity.categories.length) {
+            delete entity.categories;
+        }
+        if (entity.aliases && !entity.aliases.length) {
+            delete entity.aliases;
+        }
+        if (entity.data && !Object.keys(entity.data).length) {
+            delete entity.data;
+        }
+
+        if (entity.about) {
+            if (entity.about.indexOf('==') > 0) {
+                entity.about = entity.about.substr(0, entity.about.indexOf('==')).trim();
+            }
+            if (entity.about.length > 800) {
+                entity.about = entity.about.substr(0, 800);
+            }
+        }
+
         return entity;
     }
 
