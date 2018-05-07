@@ -5,6 +5,7 @@ export enum WikiEntityType {
     PERSON = 'PERSON',
     PLACE = 'PLACE',
     PRODUCT = 'PRODUCT',
+    WORK = 'WORK',
 }
 
 export type WikiEntityData = { [prop: string]: string[] }
