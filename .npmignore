@@ -2,3 +2,6 @@
 *.test.js
 src/
 tsconfig.json
+.travis.yml
+dev.sh
+prod.sh

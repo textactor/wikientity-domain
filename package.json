@@ -1,6 +1,6 @@
 {
   "name": "@textactor/wikientity-domain",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "textactor/wikientity-domain",
   "main": "./lib/index.js",
   "types": "./types/index.d.ts",
@@ -41,6 +41,6 @@
     "typescript": "latest"
   },
   "dependencies": {
-    "@textactor/domain": "^0.1.4"
+    "@textactor/domain": "^0.1.5"
   }
 }
