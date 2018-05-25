@@ -60,6 +60,10 @@ export class WikiEntityHelper {
             delete entity.data;
         }
 
+        if (entity.description && entity.description.length > 100) {
+            entity.description = entity.description.substr(0, 100).trim();
+        }
+
         if (entity.about) {
             if (entity.about.indexOf('==') > 0) {
                 entity.about = entity.about.substr(0, entity.about.indexOf('==')).trim();
