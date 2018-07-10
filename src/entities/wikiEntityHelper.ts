@@ -17,6 +17,7 @@ export type CreatingWikiEntityData = {
     types?: string[]
     data?: WikiEntityData
     categories?: string[]
+    countLinks: number
 }
 
 export class WikiEntityHelper {
@@ -41,6 +42,7 @@ export class WikiEntityHelper {
             types: wikiEntityData.types,
             data: filterWikiEntityData(wikiEntityData.data),
             categories: filterEntityCategories(wikiEntityData.categories, 5),
+            countLinks: wikiEntityData.countLinks,
         };
 
         if (wikiEntityData.type) {
@@ -76,7 +78,7 @@ export class WikiEntityHelper {
         return entity;
     }
 
-    static isDisambiguation(data: WikiEntityData) {
+    static isDisambiguation(data: WikiEntityData | undefined) {
         return data && data.P31 && data.P31.indexOf('Q4167410') > -1;
     }
 }

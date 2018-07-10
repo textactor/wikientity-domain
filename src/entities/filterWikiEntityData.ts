@@ -1,7 +1,7 @@
 import { uniq } from "@textactor/domain";
 import { WikiEntityType, WikiEntityData } from "./wikiEntity";
 
-export function filterWikiEntityData(data: WikiEntityData) {
+export function filterWikiEntityData(data: WikiEntityData | undefined) {
     if (data) {
         data = { ...data };
         for (let prop in data) {
@@ -301,7 +301,10 @@ const UNKNOWN_ENTITY_PROPS = [
 let ENTITY_DATA_PROPS: string[] = [];
 
 for (let type of ENTITY_DATA_PROPS_MAP.keys()) {
-    ENTITY_DATA_PROPS = ENTITY_DATA_PROPS.concat(ENTITY_DATA_PROPS_MAP.get(type));
+    const result = ENTITY_DATA_PROPS_MAP.get(type);
+    if (result) {
+        ENTITY_DATA_PROPS = ENTITY_DATA_PROPS.concat(result);
+    }
 }
 
 ENTITY_DATA_PROPS = ENTITY_DATA_PROPS.concat(UNKNOWN_ENTITY_PROPS);

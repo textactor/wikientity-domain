@@ -1,8 +1,8 @@
 import { uniq } from "@textactor/domain";
 
-export function filterEntityCategories(categories: string[], limit?: number): string[] {
+export function filterEntityCategories(categories: string[] | undefined, limit?: number): string[] {
     if (!categories) {
-        return categories;
+        return [];
     }
 
     limit = limit || 5;

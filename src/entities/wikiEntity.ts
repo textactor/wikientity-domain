@@ -24,6 +24,7 @@ export type WikiEntity = {
     types?: string[]
     data?: WikiEntityData
     categories?: string[]
+    countLinks: number
 
     createdAt?: number
     updatedAt?: number

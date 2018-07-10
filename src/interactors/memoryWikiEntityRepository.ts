@@ -9,13 +9,13 @@ export class MemoryWikiEntityRepository implements IWikiEntityRepository {
 
     createOrUpdate(item: WikiEntity): Promise<WikiEntity> {
         if (this.db.has(item.id)) {
-            return this.update({ item });
+            return this.update({ id: item.id, set: item });
         }
         return this.create(item);
     }
 
-    getById(id: string): Promise<WikiEntity> {
-        return Promise.resolve(this.db.get(id));
+    getById(id: string): Promise<WikiEntity | null> {
+        return Promise.resolve(this.db.get(id) || null);
     }
 
     getByIds(ids: string[]): Promise<WikiEntity[]> {
@@ -41,19 +41,24 @@ export class MemoryWikiEntityRepository implements IWikiEntityRepository {
         if (!!this.db.get(data.id)) {
             return Promise.reject(new Error(`Item already exists!`));
         }
-        this.db.set(data.id, { ...{ createdAt: Date.now() }, ...data });
 
-        return this.getById(data.id);
+        data = { ...{ createdAt: Date.now() }, ...data };
+
+        this.db.set(data.id, data);
+
+        return Promise.resolve(data);
     }
 
-    update(data: RepUpdateData<WikiEntity>): Promise<WikiEntity> {
-        const item = this.db.get(data.item.id);
+    update(data: RepUpdateData<string, WikiEntity>): Promise<WikiEntity> {
+        const item = this.db.get(data.id);
         if (!item) {
-            return Promise.reject(new Error(`Item not found! id=${data.item.id}`));
+            return Promise.reject(new Error(`Item not found! id=${data.id}`));
         }
 
-        for (let prop in data.item) {
-            (<any>item)[prop] = (<any>data.item)[prop]
+        if (data.set) {
+            for (let prop in data.set) {
+                (<any>item)[prop] = (<any>data.set)[prop]
+            }
         }
 
         if (data.delete) {
