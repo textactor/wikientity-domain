@@ -1,3 +1,3 @@
 
-export { IWikiEntityReadRepository, IWikiEntityRepository, IWikiEntityWriteRepository } from './wikiEntityRepository';
-export { MemoryWikiEntityRepository } from './memoryWikiEntityRepository';
+export { IWikiEntityReadRepository, IWikiEntityRepository, IWikiEntityWriteRepository } from './wiki-entity-repository';
+export { MemoryWikiEntityRepository } from './memory-wiki-entity-repository';

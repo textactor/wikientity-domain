@@ -1,3 +1,3 @@
 
-export { WikiEntity, WikiEntityData, WikiEntityType } from './wikiEntity';
-export { CreatingWikiEntityData, WikiEntityHelper } from './wikiEntityHelper';
+export { WikiEntity, WikiEntityData, WikiEntityType } from './wiki-entity';
+export { CreatingWikiEntityData, WikiEntityHelper } from './wiki-entity-helper';

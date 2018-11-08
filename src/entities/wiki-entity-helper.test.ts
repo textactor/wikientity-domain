@@ -1,6 +1,6 @@
 
 import test from 'ava';
-import { WikiEntityHelper } from './wikiEntityHelper';
+import { WikiEntityHelper } from './wiki-entity-helper';
 
 test('#create: should faild on invalid wikiDataId', t => {
 

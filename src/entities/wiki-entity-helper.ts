@@ -1,7 +1,7 @@
 
-import { WikiEntityType, WikiEntity, WikiEntityData } from './wikiEntity';
-import { filterWikiEntityData } from './filterWikiEntityData';
-import { filterEntityCategories } from './filterWikiEntityCategories';
+import { WikiEntityType, WikiEntity, WikiEntityData } from './wiki-entity';
+import { filterWikiEntityData } from './filter-wiki-entity-data';
+import { filterEntityCategories } from './filter-wiki-entity-categories';
 import { uniq } from '@textactor/domain';
 
 export type CreatingWikiEntityData = {

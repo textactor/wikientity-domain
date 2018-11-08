@@ -1,6 +1,6 @@
 
 import { RepUpdateData } from '@textactor/domain';
-import { IWikiEntityRepository } from './wikiEntityRepository';
+import { IWikiEntityRepository } from './wiki-entity-repository';
 import { WikiEntity } from '../entities';
 
 

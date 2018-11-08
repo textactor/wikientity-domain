@@ -1,5 +1,5 @@
 import { uniq } from "@textactor/domain";
-import { WikiEntityType, WikiEntityData } from "./wikiEntity";
+import { WikiEntityType, WikiEntityData } from "./wiki-entity";
 
 export function filterWikiEntityData(data: WikiEntityData | undefined) {
     if (data) {
