@@ -1,11 +1,18 @@
 
-import { RepUpdateData } from '@textactor/domain';
-import { IWikiEntityRepository } from './wiki-entity-repository';
-import { WikiEntity } from '../entities';
+import { RepositoryUpdateData } from '@textactor/domain';
+import { WikiEntityRepository } from './wiki-entity-repository';
+import { WikiEntity } from '../entities/wiki-entity';
 
 
-export class MemoryWikiEntityRepository implements IWikiEntityRepository {
+export class MemoryWikiEntityRepository implements WikiEntityRepository {
     private db: Map<string, WikiEntity> = new Map()
+
+    async deleteStorage() {
+        this.db.clear()
+    }
+    async createStorage() {
+
+    }
 
     createOrUpdate(item: WikiEntity): Promise<WikiEntity> {
         if (this.db.has(item.id)) {
@@ -49,7 +56,7 @@ export class MemoryWikiEntityRepository implements IWikiEntityRepository {
         return Promise.resolve(data);
     }
 
-    update(data: RepUpdateData<string, WikiEntity>): Promise<WikiEntity> {
+    update(data: RepositoryUpdateData<WikiEntity>): Promise<WikiEntity> {
         const item = this.db.get(data.id);
         if (!item) {
             return Promise.reject(new Error(`Item not found! id=${data.id}`));

@@ -4,7 +4,7 @@ import { filterWikiEntityData } from './filter-wiki-entity-data';
 import { filterEntityCategories } from './filter-wiki-entity-categories';
 import { uniq } from '@textactor/domain';
 
-export type CreatingWikiEntityData = {
+export type BuildWikiEntityParams = {
     lang: string
     name: string
     aliases?: string[]
@@ -21,32 +21,32 @@ export type CreatingWikiEntityData = {
 }
 
 export class WikiEntityHelper {
-    static create(wikiEntityData: CreatingWikiEntityData): WikiEntity {
-        if (WikiEntityHelper.isDisambiguation(wikiEntityData.data)) {
+    static build(params: BuildWikiEntityParams): WikiEntity {
+        if (WikiEntityHelper.isDisambiguation(params.data)) {
             throw new Error(`Disambiguation entities are not accepted!`);
         }
-        if (!/^Q\d+$/.test(wikiEntityData.wikiDataId)) {
+        if (!/^Q\d+$/.test(params.wikiDataId)) {
             throw new Error(`wikiDataId is not valid!`);
         }
-        const lang = wikiEntityData.lang.trim().toLowerCase();
+        const lang = params.lang.trim().toLowerCase();
         const entity: WikiEntity = {
-            id: `${lang.toUpperCase()}${wikiEntityData.wikiDataId}`,
-            name: wikiEntityData.name.trim(),
-            aliases: uniq(wikiEntityData.aliases || []).filter(item => item.length > 1 && item.length <= 200).slice(0, 10),
+            id: `${lang.toUpperCase()}${params.wikiDataId}`,
+            name: params.name.trim(),
+            aliases: uniq(params.aliases || []).filter(item => item.length > 1 && item.length <= 200).slice(0, 10),
             lang: lang,
-            description: wikiEntityData.description,
-            about: wikiEntityData.about,
-            wikiDataId: wikiEntityData.wikiDataId,
-            wikiPageId: wikiEntityData.wikiPageId,
-            wikiPageTitle: wikiEntityData.wikiPageTitle,
-            types: wikiEntityData.types,
-            data: filterWikiEntityData(wikiEntityData.data),
-            categories: filterEntityCategories(wikiEntityData.categories, 5),
-            countLinks: wikiEntityData.countLinks,
+            description: params.description,
+            about: params.about,
+            wikiDataId: params.wikiDataId,
+            wikiPageId: params.wikiPageId,
+            wikiPageTitle: params.wikiPageTitle,
+            types: params.types,
+            data: filterWikiEntityData(params.data),
+            categories: filterEntityCategories(params.categories, 5),
+            countLinks: params.countLinks,
         };
 
-        if (wikiEntityData.type) {
-            entity.type = wikiEntityData.type;
+        if (params.type) {
+            entity.type = params.type;
         }
 
         if (entity.types && !entity.types.length) {
