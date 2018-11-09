@@ -6,5 +6,6 @@ npm-debug.log
 *.tgz
 lib
 types
+dest
 package-lock.json
 yarn-error.log
