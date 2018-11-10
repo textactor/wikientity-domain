@@ -1,6 +1,6 @@
 import { JoiEntityValidator } from "@textactor/domain";
 import Joi = require('joi');
-import { WikiEntity } from "./wiki-entity";
+import { WikiEntity, WIKI_ENTITY_TYPE } from "./wiki-entity";
 
 
 export class WikiEntityValidator extends JoiEntityValidator<WikiEntity> {
@@ -53,25 +53,15 @@ const createSchema = Joi.object().keys({
     updatedAt: schema.updatedAt.required(),
 }).required();
 
+const updateSet = WIKI_ENTITY_TYPE.updateFields().reduce<Joi.SchemaMap>((map, field) => {
+    map[field] = (<any>schema)[field];
+    return map;
+}, {});
+
+const updateDelete = Joi.string().valid(WIKI_ENTITY_TYPE.deleteFields());
+
 const updateSchema = Joi.object().keys({
     id: schema.id.required(),
-    set: Joi.object().keys({
-        name: schema.name,
-        aliases: schema.aliases,
-        abbr: schema.abbr,
-        wikiDataId: schema.wikiDataId,
-        wikiPageId: schema.wikiPageId,
-        wikiPageTitle: schema.wikiPageTitle,
-        type: schema.type,
-        types: schema.types,
-        description: schema.description,
-        about: schema.about,
-        categories: schema.categories,
-        data: schema.data,
-        countLinks: schema.countLinks,
-        updatedAt: schema.updatedAt,
-    }),
-    delete: Joi.array().items(Joi.string().valid(
-        ['aliases', 'abbr', 'wikiPageId', 'wikiPageTitle', 'type', 'types', 'description', 'about', 'categories', 'data']
-    )),
+    set: Joi.object().keys(updateSet),
+    delete: Joi.array().items(updateDelete),
 }).or('set', 'delete').required();

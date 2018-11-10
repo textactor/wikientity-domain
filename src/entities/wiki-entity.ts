@@ -29,3 +29,35 @@ export type WikiEntity = {
     createdAt?: number
     updatedAt?: number
 }
+
+export const WIKI_ENTITY_TYPE = {
+    updateFields() {
+        return [
+            'name',
+            'aliases',
+            'wikiPageId',
+            'wikiPageTitle',
+            'description',
+            'about',
+            'type',
+            'types',
+            'data',
+            'categories',
+            'countLinks',
+            'updatedAt',
+        ]
+    },
+    deleteFields() {
+        return [
+            'aliases',
+            'wikiPageId',
+            'wikiPageTitle',
+            'description',
+            'about',
+            'type',
+            'types',
+            'data',
+            'categories',
+        ]
+    }
+}
