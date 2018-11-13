@@ -36,12 +36,13 @@
   "homepage": "https://github.com/textactor/wikientity-domain#readme",
   "devDependencies": {
     "@types/joi": "^14.0.0",
-    "@types/node": "10.12.4",
+    "@types/node": "10.12.6",
     "ava": "^0.25.0",
     "rimraf": "^2.6.2",
     "typescript": "3.1.6"
   },
   "dependencies": {
-    "joi": "^14.0.4"
+    "@textactor/domain": "^0.2.0",
+    "joi": "^14.0.6"
   }
 }
